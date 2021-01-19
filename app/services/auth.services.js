@@ -21,7 +21,7 @@ module.exports = (req, res, next) => {
         let userId = decodedToken.userId;
 
         //verif si le compte de l'user a pas été supprimé depuis la création de son token
-        const user_from_token = User.findByPk(userId);
+        const user_from_token = await User.findByPk(userId);
         if(!user_from_token) {
             const message = "Votre compte existe plus. Vous n'etes pas authoriser a acceder a cette page.";
             return res.status(401).json({ message })
