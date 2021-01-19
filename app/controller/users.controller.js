@@ -12,7 +12,7 @@ exports.login = async (req, res, messageRegister = null, userRegister = null) =>
         try {
             let user;
             //si la requete vient directement de login et non de register
-            if(userRegister === null) {
+            if(typeof userRegister != 'object') {
                 user = await User.findOne({ where: { email: req.body.email }});
                 if (!user) {
                     return res.status(404).send({ message: "Cet email ne correspond a aucun compte." });};
